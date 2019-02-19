@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  backend:
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    # command: tail -F magic
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/code
+
+  db:
+    image: postgres:alpine
+    volumes:
+      - notes-db:/var/lib/postgresql/data
+
+  frontend:
+    build: ./frontend
+    command: npm start
+    # command: tail -F magic
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/code
+
+volumes:
+  notes-db:
+    external: true
