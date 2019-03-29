@@ -1,6 +1,6 @@
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/danielgaldev/notes-frontend.git
+	url = https://github.com/danielgaldev/semestr-frontend.git
 [submodule "backend"]
 	path = backend
-	url = https://github.com/danielgaldev/notes-backend.git
+	url = https://github.com/danielgaldev/semestr-backend.git
