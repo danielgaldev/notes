@@ -4,12 +4,10 @@ services:
 
   backend:
     build: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
-    # command: tail -F magic
     depends_on:
       - db
     ports:
-      - "8000:8000"
+      - 8000:8000
     volumes:
       - ./backend:/code
 
@@ -20,12 +18,8 @@ services:
 
   frontend:
     build: ./frontend
-    command: yarn start
-    # command: tail -F magic
-    environment:
-      - CHOKIDAR_USEPOLLING=true
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - ./frontend:/code
 
