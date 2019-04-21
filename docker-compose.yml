@@ -14,7 +14,7 @@ services:
   db:
     image: postgres:alpine
     volumes:
-      - notes-db:/var/lib/postgresql/data
+      - semestr-db:/var/lib/postgresql/data
 
   frontend:
     build: ./frontend
@@ -24,5 +24,5 @@ services:
       - ./frontend:/code
 
 volumes:
-  notes-db:
+  semestr-db:
     external: true
