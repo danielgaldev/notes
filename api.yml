@@ -1,0 +1,144 @@
+openapi: "3.0.2"
+info:
+  title: SemestR API
+  version: "1.2.1"
+paths:
+  /semesters:
+    get:
+      description: "Get a list of the user's semesters"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: integer }
+                    number: { type: integer }
+    post:
+      description: "Create a new empty semester"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number: { type: integer }
+      responses:
+        "201":
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+                  number: { type: integer }
+  /semesters/{semesterId}:
+    get:
+      description: "Get semester details: classes and requirements"
+      parameters:
+        - in: path
+          name: semesterId
+          schema: { type: integer }
+          required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name: { type: integer }
+                    requirements:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id: { type: integer }
+                          text: { type: string }
+                          done: { type: boolean }
+  /semesters/{semesterId}/classes:
+    post:
+      description: "Create a class for a given semester"
+      parameters:
+        - in: path
+          name: semesterId
+          schema: { type: integer }
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+      responses:
+        "201":
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+                  name: { type: string }
+  /semesters/{semesterId}/classes/{classId}/requirements:
+    post:
+      description: "Create a requirement for a class"
+      parameters:
+        - { in: path, name: semesterId, schema: { type: integer }, required: true }
+        - { in: path, name: classId, schema: { type: integer }, required: true }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text: { type: string }
+      responses:
+        "201":
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+                  text: { type: string }
+                  done: { type: boolean }
+  /semesters/{semesterId}/classes/{classId}/requirements/{requirementId}:
+    put:
+      description: "Mark a requirement as done or undone"
+      parameters:
+        - { in: path, name: semesterId, schema: { type: integer }, required: true }
+        - { in: path, name: classId, schema: { type: integer }, required: true }
+        - { in: path, name: requirementId, schema: { type: integer }, required: true }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                done: { type: boolean }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+                  text: { type: string }
+                  done: { type: boolean }

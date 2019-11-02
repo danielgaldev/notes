@@ -1,5 +1,0 @@
-django
-djangorestframework
-psycopg2-binary
-django-cors-headers
-drf-nested-routers
