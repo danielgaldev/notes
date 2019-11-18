@@ -1,26 +1,28 @@
 import React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+
+import Login from './components/Login';
+import ItemList from './components/ItemList';
+import { logout, getUser } from './utils/actions';
 
 
-function App() {
-  const [items, setItems] = React.useState([]);
+function App({ user, logout, getUser }) {
   React.useEffect(() => {
-    axios.get('/api/v1/items/')
-      .then(result => {
-        setItems(result.data);
-      })
-      .catch(e => console.log(e));
-  }, []);
+    getUser();
+  }, [getUser])
   return (
     <div>
-      Hello world
-      <ul>
-        {items.map(item => {
-          return <li key={item.id}>{item.text}</li>;
-        })}
-      </ul>
+      {user && (
+        <div>
+          <div>Logged in as {user.username}</div>
+          <button onClick={logout}>Logout</button>
+          <ItemList />
+        </div>
+      )}
+      {!user && <Login />}
+      {user && user.is_staff && <div>Only admins can see this</div>}
     </div>
   );
 }
 
-export default App;
+export default connect(state => ({ user: state.auth.user }), { logout, getUser })(App);

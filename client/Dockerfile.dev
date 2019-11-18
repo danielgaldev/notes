@@ -1,6 +1,5 @@
 FROM node:10.16.3-alpine
 
-RUN mkdir /code
 WORKDIR /code
 COPY package.json yarn.lock /code/
 RUN yarn
