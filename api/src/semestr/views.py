@@ -1,5 +1,5 @@
 from rest_framework import viewsets, status
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, DestroyModelMixin
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
@@ -21,7 +21,7 @@ class SemesterViewSet(ListModelMixin, RetrieveModelMixin, viewsets.GenericViewSe
         return SemesterSerializer
 
 
-class ClassViewSet(viewsets.ViewSet):
+class ClassViewSet(DestroyModelMixin, viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
         
     def create(self, request, pk=None, semester_pk=None):
@@ -30,3 +30,9 @@ class ClassViewSet(viewsets.ViewSet):
         semester = get_object_or_404(Semester, user=user, pk=semester_pk)
         class_object = Class.objects.create(name=name, parent_semester=semester)
         return Response(ClassSerializer(class_object).data, status=status.HTTP_201_CREATED)
+
+    def destroy(self, request, pk=None, semester_pk=None):
+        queryset = Class.objects.filter(pk=pk, parent_semester=semester_pk)
+        obj = get_object_or_404(queryset, pk=pk)
+        obj.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
