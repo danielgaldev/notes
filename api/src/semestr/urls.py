@@ -1,13 +1,7 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path
 
-from . import auth
-
 router = DefaultRouter()
 
 urlpatterns = [
-    path("login/", auth.login_view),
-    path("logout/", auth.logout_view),
-    path("register/", auth.register_view),
-    path("me/", auth.account)
 ] + router.urls
