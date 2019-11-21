@@ -8,12 +8,11 @@ from .models import Semester, Class, Requirement
 from .serializers import SemesterSerializer, SemesterDetailSerializer, ClassSerializer, RequirementSerializer
 
 
-class SemesterViewSet(ListModelMixin, RetrieveModelMixin, viewsets.GenericViewSet):
+class SemesterViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin, viewsets.GenericViewSet):
     permission_classes = [IsAuthenticated]
     
     def get_queryset(self): 
-        user = self.request.user 
-        return Semester.objects.filter(user=user)
+        return Semester.objects.filter(user=self.request.user)
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -39,7 +38,7 @@ class ClassViewSet(DestroyModelMixin, viewsets.ViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class RequirementViewSet(DestroyModelMixin, viewsets.ViewSet):
+class RequirementViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
         
     def create(self, request, pk=None, semester_pk=None, class_pk=None):
