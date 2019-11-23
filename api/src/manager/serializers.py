@@ -5,7 +5,7 @@ from . import models
 
 class RequirementTemplateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.ClassTemplate
+        model = models.RequirementTemplate
         fields = ("id", "text")
 
 
