@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ast.literal_eval(os.environ['DJANGO_ALLOWED_HOSTS'])
 INSTALLED_APPS = [
     'semestr',
     'account',
+    'manager',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
