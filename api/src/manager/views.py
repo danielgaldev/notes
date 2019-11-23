@@ -1,4 +1,5 @@
 from rest_framework import viewsets, mixins
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from . import models
 from . import serializers
@@ -17,3 +18,10 @@ class TemplateViewSet(
         if self.action == 'retrieve':
             return serializers.TemplateDetailSerializer
         return serializers.TemplateSerializer
+
+    def get_permissions(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
