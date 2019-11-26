@@ -19,6 +19,11 @@ class SemesterViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin, vie
             return SemesterDetailSerializer
         return SemesterSerializer
 
+    def create(self, request):
+        number = request.data['number']
+        semester = Semester.objects.create(number=number, user=request.user)
+        return Response(SemesterSerializer(semester).data, status=status.HTTP_201_CREATED)
+
 
 class ClassViewSet(DestroyModelMixin, viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
