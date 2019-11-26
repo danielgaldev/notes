@@ -1,23 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import useAxios from 'axios-hooks';
 //
-import axios from '../utils/session';
 import { logout } from '../utils/actions';
 
 
 function Home({ logout }) {
-  const [semesters, setSemesters] = React.useState([]);
-
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get('/api/v1/semesters');
-        setSemesters(response.data);
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  }, []);
+  const [{ data }] = useAxios('/api/v1/semesters');
 
   return (
     <div>
@@ -27,9 +16,9 @@ function Home({ logout }) {
         <input type='text' placeholder='Semester number' />
         <button type='submit'>Add</button>
       </form>
-      <ul>
-        {semesters.map(s => <li key={s.id}>{s.number}</li>)}
-      </ul>
+      {data && <ul>
+        {data.map(s => <li key={s.id}>{s.number}</li>)}
+      </ul>}
     </div>
   );
 }
