@@ -3,19 +3,17 @@ import { connect } from 'react-redux';
 import useAxios from 'axios-hooks';
 //
 import { logout } from '../utils/actions';
+import AddSemester from '../components/AddSemester';
 
 
 function Home({ logout }) {
-  const [{ data }] = useAxios('/api/v1/semesters');
+  const [{ data }, update] = useAxios('/api/v1/semesters');
 
   return (
     <div>
       <h1>Home</h1>
       <button onClick={logout}>Logout</button><br /><br />
-      <form>
-        <input type='text' placeholder='Semester number' />
-        <button type='submit'>Add</button>
-      </form>
+      <AddSemester update={update} />
       {data && <ul>
         {data.map(s => <li key={s.id}>{s.number}</li>)}
       </ul>}
