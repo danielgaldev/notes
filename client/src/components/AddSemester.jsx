@@ -6,13 +6,21 @@ export default function AddSemester({ update }) {
 
   const [number, setNumber] = React.useState('');
 
-  function onSuccess(data) { setNumber(''); update(); return data; }
+  function validateStatus(status) {
+    if (status >= 200 && status < 300) {
+      setNumber('');
+      update();
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   const [, execute] = useAxios({
     url: '/api/v1/semesters/',
     method: 'POST',
     data: { number },
-    transformResponse: onSuccess
+    validateStatus
   }, { manual: true });
 
   function handleSubmit(event) {
