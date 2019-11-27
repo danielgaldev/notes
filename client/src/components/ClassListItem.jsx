@@ -1,6 +1,7 @@
 import React from 'react';
 import useAxios from 'axios-hooks';
 import AddRequirement from './AddRequirement';
+import Requirement from './Requirement';
 
 
 export default function ClassListItem({ semesterId, clas, update }) {
@@ -25,7 +26,7 @@ export default function ClassListItem({ semesterId, clas, update }) {
       <button onClick={execute}>Delete</button>
       <AddRequirement classId={clas.id} semesterId={semesterId} update={update} />
       {clas.requirements && <ul>
-        {clas.requirements.map(r => <li key={r.id}>{r.text}</li>)}
+        {clas.requirements.map(r => <Requirement key={r.id} requirement={r} />)}
       </ul>}
     </li>
   );
