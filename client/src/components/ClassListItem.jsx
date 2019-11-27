@@ -1,9 +1,8 @@
 import React from 'react';
 import useAxios from 'axios-hooks';
-import { Link } from 'react-router-dom';
 
 
-export default function SemesterListItem({ semester, update }) {
+export default function ClassListItem({ semesterId, clas, update }) {
   function validateStatus(status) {
     if (status >= 200 && status < 300) {
       update();
@@ -14,14 +13,14 @@ export default function SemesterListItem({ semester, update }) {
   }
 
   const [, execute] = useAxios({
-    url: `/api/v1/semesters/${semester.id}/`,
+    url: `/api/v1/semesters/${semesterId}/classes/${clas.id}/`,
     method: 'DELETE',
     validateStatus
   }, { manual: true });
 
   return (
     <li>
-      <Link to={`/semesters/${semester.id}`}>{semester.number}. semester</Link>
+      <span>{clas.name}</span>
       <button onClick={execute}>Delete</button>
     </li>
   );

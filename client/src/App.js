@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound';
 import Forbidden from './pages/Forbidden';
 import Admin from './pages/Admin';
 import Home from './pages/Home';
+import SemesterDetailPage from './pages/SemesterDetailPage';
 
 
 export const history = createBrowserHistory();
@@ -21,7 +22,8 @@ function App({ user, getUser }) {
   return (
     <Router history={history}>
       <Switch>
-        <LoggedInRoute exact path='/' user={user}><Home /></LoggedInRoute>
+      <LoggedInRoute exact path='/' user={user}><Home /></LoggedInRoute>
+      <LoggedInRoute exact path='/semesters/:id' user={user}><SemesterDetailPage /></LoggedInRoute>
         <AdminRoute exact path='/admin' user={user}><Admin /></AdminRoute>
         <Route exact path='/login' component={Login} />
         <Route exact path='/forbidden' component={Forbidden} />
