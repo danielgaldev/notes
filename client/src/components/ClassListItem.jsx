@@ -26,7 +26,9 @@ export default function ClassListItem({ semesterId, clas, update }) {
       <button onClick={execute}>Delete</button>
       <AddRequirement classId={clas.id} semesterId={semesterId} update={update} />
       {clas.requirements && <ul>
-        {clas.requirements.map(r => <Requirement key={r.id} requirement={r} />)}
+        {clas.requirements.map(r => (
+          <Requirement key={r.id} requirement={r} classId={clas.id} semesterId={semesterId} update={update} />
+        ))}
       </ul>}
     </li>
   );
