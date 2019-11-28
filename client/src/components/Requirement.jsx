@@ -11,11 +11,16 @@ export default function Requirement({ requirement, classId, semesterId, update }
     method: 'DELETE',
     validateStatus: onSuccess(() => update())
   }, { manual: true });
+  const [, executePatch] = useAxios({
+    url: `/api/v1/semesters/${semesterId}/classes/${classId}/requirements/${requirement.id}/`,
+    method: 'PATCH'
+  }, { manual: true });
+
 
   function handleChange(e) {
-    console.log(`PATCH /api/v1/semesters/${semesterId}/classes/${classId}/requirements/${requirement.id}/ { done: ${!done} }`);
+    executePatch();
     setDone(!done);
-  };
+  }
 
   return (
     <li>
@@ -25,5 +30,5 @@ export default function Requirement({ requirement, classId, semesterId, update }
         <button onClick={executeDelete}>Delete</button>
       </label>
     </li>
-  )
+  );
 }

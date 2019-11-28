@@ -70,6 +70,7 @@ class RequirementViewSet(viewsets.ViewSet):
     def partial_update(self, request, pk=None, semester_pk=None, class_pk=None):
         requirement = get_object_or_404(
             Requirement,
+            pk=pk,
             parent_class=class_pk,
             parent_class__parent_semester=semester_pk,
             parent_class__parent_semester__user=request.user
