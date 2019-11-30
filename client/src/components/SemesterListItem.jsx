@@ -9,7 +9,7 @@ import { history } from '../App';
 import s from './SemesterListItem.module.css';
 
 const CustomToggle = React.forwardRef(({ onClick }, ref) => (
-  <Button ref={ref} variant="light" onClick={onClick}><FontAwesomeIcon icon='ellipsis-v' /></Button>
+  <Button ref={ref} variant="light" className={s['button']} onClick={onClick}><FontAwesomeIcon icon='ellipsis-v' /></Button>
 ));
 
 export default function SemesterListItem({ semester, update }) {

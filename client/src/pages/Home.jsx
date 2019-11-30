@@ -5,6 +5,8 @@ import useAxios from 'axios-hooks';
 import { logout } from '../utils/actions';
 import AddSemester from '../components/AddSemester';
 import SemesterListItem from '../components/SemesterListItem';
+//
+import s from './Home.module.css';
 
 
 function Home({ logout }) {
@@ -18,7 +20,7 @@ function Home({ logout }) {
       <h1>Home</h1>
       <button onClick={logout}>Logout</button><br /><br />
       <AddSemester update={update} />
-      {data && <ul>
+      {data && <ul className={s['list']}>
         {data.map(s => <SemesterListItem key={s.id} semester={s} update={update} />)}
       </ul>}
     </div>
