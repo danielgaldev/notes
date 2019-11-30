@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 //
 import Login from './components/Login';
 import { getUser } from './utils/actions';
@@ -15,6 +17,9 @@ import SemesterDetailPage from './pages/SemesterDetailPage';
 
 
 export const history = createBrowserHistory();
+
+// Icons
+library.add(faEllipsisV);
 
 function App({ user, getUser }) {
   React.useEffect(() => {
