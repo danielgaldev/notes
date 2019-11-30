@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import 'bootstrap/dist/css/bootstrap.min.css';
 //
 import Login from './components/Login';
 import { getUser } from './utils/actions';
@@ -22,8 +23,8 @@ function App({ user, getUser }) {
   return (
     <Router history={history}>
       <Switch>
-      <LoggedInRoute exact path='/' user={user}><Home /></LoggedInRoute>
-      <LoggedInRoute exact path='/semesters/:id' user={user}><SemesterDetailPage /></LoggedInRoute>
+        <LoggedInRoute exact path='/' user={user}><Home /></LoggedInRoute>
+        <LoggedInRoute exact path='/semesters/:id' user={user}><SemesterDetailPage /></LoggedInRoute>
         <AdminRoute exact path='/admin' user={user}><Admin /></AdminRoute>
         <Route exact path='/login' component={Login} />
         <Route exact path='/forbidden' component={Forbidden} />

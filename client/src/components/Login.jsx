@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { useLocation, Redirect } from 'react-router-dom';
+import { Button, Form } from 'react-bootstrap';
 //
 import { login } from '../utils/actions';
+import s from './Login.module.css';
 
 
 function Login({ login, user }) {
   let location = useLocation();
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
 
   // If user is already logged in, redirect back
   if (user && user.username) {
@@ -18,24 +18,26 @@ function Login({ login, user }) {
   } else {
     function handleSubmit(e) {
       e.preventDefault();
-      setUsername('');
-      setPassword('');
-      login(username, password);
+      const form = e.currentTarget;
+      login(form.username.value, form.password.value);
     }
     return (
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
-        </label>
-        <br />
-        <input type='submit' value='Login' />
-      </form>
+      <main className={s['container']}>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="username">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" placeholder="Username" />
+          </Form.Group>
+
+          <Form.Group controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+          <Button variant="primary" type="submit" className={s['login-button']}>
+            Login
+          </Button>
+        </Form>
+      </main>
     );
   }
 }

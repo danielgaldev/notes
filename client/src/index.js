@@ -7,6 +7,7 @@ import thunkMiddleware from 'redux-thunk'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { authReducer } from './utils/reducers';
+import './index.css';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
