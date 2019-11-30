@@ -1,6 +1,11 @@
 import React from 'react';
 import useAxios from 'axios-hooks';
 import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
+
+import { history } from '../App';
+
+import s from './SemesterListItem.module.css';
 
 
 export default function SemesterListItem({ semester, update }) {
@@ -20,9 +25,12 @@ export default function SemesterListItem({ semester, update }) {
   }, { manual: true });
 
   return (
-    <li>
-      <Link to={`/semesters/${semester.id}`}>{semester.number}. semester</Link>
-      <button onClick={execute}>Delete</button>
-    </li>
+    <Card className={s['card']} onClick={() => history.push(`/semesters/${semester.id}`)}>
+      <Card.Title className={s['title']}>{semester.number}. semester</Card.Title>
+    </Card>
+    // <li>
+    //   <Link to={`/semesters/${semester.id}`}>{semester.number}. semester</Link>
+    //   <button onClick={execute}>Delete</button>
+    // </li>
   );
 }
