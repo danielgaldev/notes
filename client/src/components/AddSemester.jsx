@@ -18,11 +18,11 @@ export default function AddSemester({ update }) {
     event.preventDefault();
     execute();
   }
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <input type='text' placeholder='Semester number' value={number} onChange={e => setNumber(e.target.value)} />
-      <button type='submit'>Add</button>
+      <button type='submit' className='bg-purple-500 hover:bg-purple-600 p-2'>Add</button>
     </form>
   );
 }

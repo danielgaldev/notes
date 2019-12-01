@@ -13,7 +13,7 @@ function Home({ logout }) {
   return (
     <div>
       <h1>Home</h1>
-      <button onClick={logout}>Logout</button><br /><br />
+      <button className='bg-purple-500 hover:bg-purple-600 p-2' onClick={logout}>Logout</button><br /><br />
       <AddSemester update={update} />
       {data && <ul>
         {data.map(s => <SemesterListItem key={s.id} semester={s} update={update} />)}

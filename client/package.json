@@ -16,7 +16,10 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "jest --config ./src/jest.config.js",
-    "test:watch": "jest --watchAll --config ./src/jest.config.js"
+    "test:watch": "jest --watchAll --config ./src/jest.config.js",
+    "build:styles": "postcss src/tailwind.css -o src/styles.css", 
+    "prebuild": "yarn build:styles",
+    "prestart": "yarn build:styles"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,8 +39,11 @@
   "devDependencies": {
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
+    "autoprefixer": "^9.7.3",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
-    "moxios": "^0.4.0"
+    "moxios": "^0.4.0",
+    "postcss-cli": "^6.1.3",
+    "tailwindcss": "^1.1.4"
   }
 }
