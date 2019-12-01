@@ -29,10 +29,12 @@ function Home({ logout, username }) {
           </button>
         </div>
       </header>
-      <AddSemester update={update} />
-      {data && <ul>
-        {data.map(s => <SemesterListItem key={s.id} semester={s} update={update} />)}
-      </ul>}
+      <main className='p-4'>
+        {data && <ul className='flex flex-row flex-wrap'>
+          {data.map(s => <SemesterListItem key={s.id} semester={s} update={update} />)}
+          <AddSemester update={update} />
+        </ul>}
+      </main>
     </div>
   );
 }
