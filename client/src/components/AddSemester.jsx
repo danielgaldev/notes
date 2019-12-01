@@ -25,5 +25,5 @@ export default function AddSemester({ update }) {
       <input type='text' placeholder='Semester number' value={number} onChange={e => setNumber(e.target.value)} />
       <button type='submit' className='bg-purple-500 hover:bg-purple-600 p-2'>Add <FaBeer className='text-white text-4xl' /></button>
     </form>
-      );
-    }
+  );
+}

@@ -23,18 +23,16 @@ function Login({ login, user }) {
       login(username, password);
     }
     return (
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
+      <form className='container mx-auto my-auto h-full flex flex-col items-center justify-center p-4' onSubmit={handleSubmit}>
+        <label className='flex flex-col w-full sm:w-64'>
+          <span className='my-1'>Username</span>
+          <input className='p-1 border border-solid border-gray-500 focus:border-purple-800' placeholder='Enter your username' type='text' value={username} onChange={e => setUsername(e.target.value)} />
         </label>
-        <br />
-        <label>
-          Password:
-          <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+        <label className='flex flex-col w-full sm:w-64'>
+          <span className='my-1'>Password</span>
+          <input className='p-1 border border-solid border-gray-500 focus:border-purple-800' type='password' placeholder='Enter your password' value={password} onChange={e => setPassword(e.target.value)} />
         </label>
-        <br />
-        <input type='submit' value='Login' />
+        <input className='my-4 p-1 bg-purple-600 hover:bg-purple-800 focus:bg-purple-800 w-full sm:w-64 cursor-pointer text-gray-100' type='submit' value='Login' />
       </form>
     );
   }
