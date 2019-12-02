@@ -21,9 +21,11 @@ export default function AddClass({ semesterId, update }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='text' placeholder='Class name' value={name} onChange={e => setName(e.target.value)} />
-      <button type='submit'>Add</button>
-    </form>
+    <li className='w-full sm:w-64 border border-solid border-gray-300 m-3'>
+      <form onSubmit={handleSubmit}>
+        <input type='text' placeholder='Class name' value={name} onChange={e => setName(e.target.value)} />
+        <button type='submit'>Add</button>
+      </form>
+    </li>
   );
 }

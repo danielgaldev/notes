@@ -40,6 +40,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
+    "@tailwindcss/custom-forms": "^0.2.1",
     "autoprefixer": "^9.7.3",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
