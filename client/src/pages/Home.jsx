@@ -1,25 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import useAxios from 'axios-hooks';
+import { FaGraduationCap, FaSignOutAlt } from 'react-icons/fa';
 //
 import { logout } from '../utils/actions';
 import AddSemester from '../components/AddSemester';
 import SemesterListItem from '../components/SemesterListItem';
+import Header from '../components/Header';
 
 
-function Home({ logout }) {
+function Home({ logout, username }) {
   const [{ data }, update] = useAxios('/api/v1/semesters');
+  React.useEffect(() => {
+    update();
+  }, []);
 
   return (
-    <div>
-      <h1>Home</h1>
-      <button onClick={logout}>Logout</button><br /><br />
-      <AddSemester update={update} />
-      {data && <ul>
+    <main className='p-4'>
+      {data && <ul className='flex flex-row flex-wrap'>
         {data.map(s => <SemesterListItem key={s.id} semester={s} update={update} />)}
+        <AddSemester update={update} />
       </ul>}
-    </div>
+    </main>
   );
 }
 
-export default connect(null, { logout })(Home);
+export default connect(state => ({ username: state.auth.user.username }), { logout })(Home);

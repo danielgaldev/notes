@@ -1,5 +1,7 @@
 import React from 'react';
 import useAxios from 'axios-hooks';
+import { FaTrashAlt } from 'react-icons/fa';
+//
 import AddRequirement from './AddRequirement';
 import Requirement from './Requirement';
 
@@ -21,14 +23,17 @@ export default function ClassListItem({ semesterId, clas, update }) {
   }, { manual: true });
 
   return (
-    <li>
-      <span>{clas.name}</span>
-      <button onClick={execute}>Delete</button>
-      <AddRequirement classId={clas.id} semesterId={semesterId} update={update} />
-      {clas.requirements && <ul>
+    <li className='border border-solid border-gray-300 bi-avoid p-3 mb-5'>
+      <div className='flex justify-between'>
+        <h3 className='text-xl font-bold'>{clas.name}</h3>
+        <button onClick={execute}><FaTrashAlt className='text-gray-800 hover:text-red-800' /></button>
+      </div>
+      <hr className='my-2' />
+      {clas.requirements && <ul className='flex flex-col'>
         {clas.requirements.map(r => (
           <Requirement key={r.id} requirement={r} classId={clas.id} semesterId={semesterId} update={update} />
         ))}
+        <AddRequirement classId={clas.id} semesterId={semesterId} update={update} />
       </ul>}
     </li>
   );

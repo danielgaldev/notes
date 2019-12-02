@@ -1,5 +1,6 @@
 import React from 'react';
 import useAxios from 'axios-hooks';
+import { FaTimes } from 'react-icons/fa';
 //
 import { onSuccess } from '../utils/helpers';
 
@@ -23,12 +24,12 @@ export default function Requirement({ requirement, classId, semesterId, update }
   }
 
   return (
-    <li>
-      <label>
-        <input type='checkbox' checked={done} onChange={handleChange} />
-        {requirement.text}
-        <button onClick={executeDelete}>Delete</button>
+    <li className='flex justify-between items-center h-8'>
+      <label className='flex items-center flex-auto cursor-pointer'>
+        <input type='checkbox' checked={done} onChange={handleChange} className='form-checkbox text-purple-600' />
+        <span className='ml-2'>{requirement.text}</span>
       </label>
+      <button onClick={executeDelete}><FaTimes className='text-gray-600 hover:text-red-800 h-full' /></button>
     </li>
   );
 }
