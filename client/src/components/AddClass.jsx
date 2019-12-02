@@ -22,7 +22,7 @@ export default function AddClass({ semesterId, update }) {
   }
 
   return (
-    <li className='border border-solid border-gray-300 mb-5 h-10'>
+    <li className='border border-solid border-gray-300 mb-5 h-10 bi-avoid'>
       <form onSubmit={handleSubmit} className='flex justify-between h-full'>
         <input
           type='text'

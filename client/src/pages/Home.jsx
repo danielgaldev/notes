@@ -10,6 +10,9 @@ import SemesterListItem from '../components/SemesterListItem';
 
 function Home({ logout, username }) {
   const [{ data }, update] = useAxios('/api/v1/semesters');
+  React.useEffect(() => {
+    update();
+  }, []);
 
   return (
     <div>
