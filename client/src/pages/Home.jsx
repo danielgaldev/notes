@@ -6,6 +6,7 @@ import { FaGraduationCap, FaSignOutAlt } from 'react-icons/fa';
 import { logout } from '../utils/actions';
 import AddSemester from '../components/AddSemester';
 import SemesterListItem from '../components/SemesterListItem';
+import Header from '../components/Header';
 
 
 function Home({ logout, username }) {
@@ -15,30 +16,12 @@ function Home({ logout, username }) {
   }, []);
 
   return (
-    <div>
-      <header className='w-full h-12 flex flex-row items-center justify-between pl-2 bg-purple-600 text-gray-100'>
-        <div className='flex flex-row items-center'>
-          <FaGraduationCap className='text-gray-100 text-2xl mx-3' />
-          <h1 className='text-2xl font-semibold'>SemestR</h1>
-        </div>
-        <div className='h-full'>
-          <span className='hidden sm:inline'>Logged in as {username}.</span>
-          <span className='inline sm:hidden'>{username}</span>
-          <button
-            className='h-full px-4 underline hover:no-underline focus:no-underline focus:outline-none'
-            onClick={logout}>
-            <span className='hidden sm:inline'>Logout</span>
-            <FaSignOutAlt className='inline sm:hidden' />
-          </button>
-        </div>
-      </header>
-      <main className='p-4'>
-        {data && <ul className='flex flex-row flex-wrap'>
-          {data.map(s => <SemesterListItem key={s.id} semester={s} update={update} />)}
-          <AddSemester update={update} />
-        </ul>}
-      </main>
-    </div>
+    <main className='p-4'>
+      {data && <ul className='flex flex-row flex-wrap'>
+        {data.map(s => <SemesterListItem key={s.id} semester={s} update={update} />)}
+        <AddSemester update={update} />
+      </ul>}
+    </main>
   );
 }
 
