@@ -18,9 +18,9 @@ export default function SemesterDetailPage() {
   return (
     <main>
       {data && <h2>{data.number}. semester</h2>}
-      {data && <ul className='flex flex-row flex-wrap items-start'>
-        {data.classes.map(c => <ClassListItem key={c.id} clas={c} semesterId={id} update={update} />)}
+      {data && <ul className='p-3 md:col-count-2 lg:col-count-3 xl:col-count-4 xl:max-w-8xl'>
         <AddClass semesterId={id} update={update} />
+        {data.classes.map(c => <ClassListItem key={c.id} clas={c} semesterId={id} update={update} />)}
       </ul>}
     </main>
   )

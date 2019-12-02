@@ -10,3 +10,12 @@ html, body, #root {
 *:focus {
     outline: none;
 }
+
+@responsive {
+    .col-count-4 {
+        column-count: 4;
+    }
+    .max-w-8xl {
+        max-width: 88rem;
+    }
+}

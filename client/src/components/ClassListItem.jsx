@@ -23,7 +23,7 @@ export default function ClassListItem({ semesterId, clas, update }) {
   }, { manual: true });
 
   return (
-    <li className='w-full sm:w-64 border border-solid border-gray-300 p-3 m-3'>
+    <li className='border border-solid border-gray-300 bi-avoid p-3 mb-5'>
       <div className='flex justify-between'>
         <h3 className='text-xl font-bold'>{clas.name}</h3>
         <button onClick={execute}><FaTrashAlt className='text-gray-800 hover:text-red-800' /></button>
