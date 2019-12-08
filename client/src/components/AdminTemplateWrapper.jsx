@@ -5,6 +5,7 @@ import AdminTemplateDetails from './AdminTemplateDetails';
 
 export default function AdminTemplateWrapper({ template, deleteTemplate }) {
   const [open, setOpen] = React.useState(false);
+  const [classes, setClasses] = React.useState(template.classes);
   return (
     <li className='border border-solid border-grey-300 p-2 mt-3'>
       <div className='w-full flex justify-between items-center'>
@@ -22,7 +23,7 @@ export default function AdminTemplateWrapper({ template, deleteTemplate }) {
           </button>
         </div>
       </div>
-      {open && <AdminTemplateDetails template={template} />}
+      {open && <AdminTemplateDetails templateId={template.id} classes={classes} setClasses={setClasses} />}
     </li>
   )
 }

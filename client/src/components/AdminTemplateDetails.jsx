@@ -5,13 +5,12 @@ import axios from '../utils/session';
 import TemplateClassDetails from './TemplateClassDetails';
 
 
-export default function AdminTemplateDetails({ template }) {
-  const [classes, setClasses] = React.useState(template.classes);
+export default function AdminTemplateDetails({ templateId, setClasses, classes }) {
   const [newClassName, setNewClassName] = React.useState('');
 
   async function createClass(name) {
     try {
-      const response = await axios.post(`/api/v1/templates/${template.id}/classes/`, { name });
+      const response = await axios.post(`/api/v1/templates/${templateId}/classes/`, { name });
       setClasses([...classes, response.data]);
       setNewClassName('');
     } catch (e) {
@@ -21,7 +20,7 @@ export default function AdminTemplateDetails({ template }) {
 
   async function deleteClass(id) {
     try {
-      await axios.delete(`/api/v1/templates/${template.id}/classes/${id}/`);
+      await axios.delete(`/api/v1/templates/${templateId}/classes/${id}/`);
       setClasses(classes.filter(c => c.id !== id));
     } catch (e) {
       console.error(e);
@@ -38,11 +37,11 @@ export default function AdminTemplateDetails({ template }) {
       {classes.map(c =>
         <TemplateClassDetails
           key={c.id}
-          templateId={template.id}
+          templateId={templateId}
           clas={c}
           deleteClass={deleteClass} />
       )}
-      <form onSubmit={handleSubmit} className='mx-2 flex justify-between'>
+      <form onSubmit={handleSubmit} className='mx-2 flex justify-between bi-avoid'>
         <label className='flex-auto'>
           <input
             type='text'
