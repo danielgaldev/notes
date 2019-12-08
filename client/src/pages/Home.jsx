@@ -1,19 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import useAxios from 'axios-hooks';
-import { FaGraduationCap, FaSignOutAlt } from 'react-icons/fa';
 //
-import { logout } from '../utils/actions';
 import AddSemester from '../components/AddSemester';
 import SemesterListItem from '../components/SemesterListItem';
-import Header from '../components/Header';
 
 
-function Home({ logout, username }) {
+function Home() {
   const [{ data }, update] = useAxios('/api/v1/semesters');
   React.useEffect(() => {
     update();
-  }, []);
+  }, [update]);
 
   return (
     <main className='p-4'>
@@ -25,4 +21,4 @@ function Home({ logout, username }) {
   );
 }
 
-export default connect(state => ({ username: state.auth.user.username }), { logout })(Home);
+export default Home;
