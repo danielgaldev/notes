@@ -22,8 +22,8 @@ export default function Templates() {
           </span>
         </Link>
       </div>
-      <h1>Templates</h1>
-      {data && <ul>
+      <h1 className='text-4xl p-4 font-light'>Templates</h1>
+      {data && <ul className='p-3 max-w-4xl'>
         {data.map(template => <TemplateWrapper key={template.id} template={template} semesterId={id} />)}
       </ul>}
     </main>

@@ -17,11 +17,20 @@ export default function TemplateWrapper({ template, semesterId }) {
   }, { manual: true });
 
   return (
-    <li>
-      <div>
-        <span>{template.name}</span>
-        <button onClick={() => setOpen(!open)}>View / Hide</button>
-        <button onClick={execute}>Import</button>
+    <li className='border border-solid border-grey-300 p-2'>
+      <div className='w-full flex justify-between items-center'>
+        <span className='text-2xl ml-2'>{template.name}</span>
+        <div>
+          <button
+            onClick={() => setOpen(!open)}
+            className='p-2 bg-purple-600 mx-2 hover:bg-purple-800 text-gray-100'>
+            {open ? 'Hide' : 'View'}
+          </button>
+          <button onClick={execute}
+            className='p-2 bg-purple-600 mx-2 hover:bg-purple-800 text-gray-100'>
+            Import
+            </button>
+        </div>
       </div>
       {open && <TemplateDetails template={template} />}
     </li>
