@@ -4,7 +4,7 @@ import AdminTemplateDetails from './AdminTemplateDetails';
 
 
 export default function AdminTemplateWrapper({ template, deleteTemplate }) {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   return (
     <li className='border border-solid border-grey-300 p-2 mt-3'>
       <div className='w-full flex justify-between items-center'>

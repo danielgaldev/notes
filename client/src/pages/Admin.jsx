@@ -26,7 +26,7 @@ export default function Admin() {
   async function createTemplate({ name }) {
     try {
       const response = await axios.post('/api/v1/templates/', { name });
-      setData([...data, response.data]);
+      setData([...data, { ...response.data, classes: [] }]);
       setNewTemplateName('');
     } catch (e) {
       console.error(e);
@@ -46,7 +46,7 @@ export default function Admin() {
           </span>
         </Link>
       </nav>
-      {data && <ul className='p-3 max-w-4xl'>
+      {data && <ul className='p-3'>
         {data.map(template => <AdminTemplateWrapper
           key={template.id}
           template={template}
@@ -56,7 +56,7 @@ export default function Admin() {
           <label className='flex-auto'>
             <input
               type='text'
-              placeholder='template name'
+              placeholder='Template name'
               value={newTemplateName}
               onChange={e => setNewTemplateName(e.target.value)}
               className='p-3 border boder-solid border-gray-300 w-full'

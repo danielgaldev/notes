@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaPlus } from 'react-icons/fa';
 //
 import axios from '../utils/session';
 import TemplateClassDetails from './TemplateClassDetails';
@@ -33,17 +34,7 @@ export default function AdminTemplateDetails({ template }) {
   }
 
   return (
-    <ul>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input
-            type='text'
-            value={newClassName}
-            onChange={e => setNewClassName(e.target.value)}
-            placeholder='Enter new class name' />
-        </label>
-        <button type='submit'>Add</button>
-      </form>
+    <ul className='sm:col-count-2 lg:col-count-3 p-3'>
       {classes.map(c =>
         <TemplateClassDetails
           key={c.id}
@@ -51,6 +42,17 @@ export default function AdminTemplateDetails({ template }) {
           clas={c}
           deleteClass={deleteClass} />
       )}
+      <form onSubmit={handleSubmit} className='mx-2 flex justify-between'>
+        <label className='flex-auto'>
+          <input
+            type='text'
+            value={newClassName}
+            onChange={e => setNewClassName(e.target.value)}
+            placeholder='Class name'
+            className='p-1 border-b border-gray-300 w-full' />
+        </label>
+        <button type='submit' className='p-2 bg-gray-700 hover:bg-gray-900'><FaPlus className='text-gray-100' /></button>
+      </form>
     </ul>
   )
 }
