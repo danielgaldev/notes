@@ -1,11 +1,13 @@
 from rest_framework import viewsets, status
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, DestroyModelMixin
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 
 from .models import Semester, Class, Requirement
 from .serializers import SemesterSerializer, SemesterDetailSerializer, ClassSerializer, RequirementSerializer
+from manager.models import Template
 
 
 class SemesterViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin, viewsets.GenericViewSet):
@@ -41,6 +43,17 @@ class ClassViewSet(DestroyModelMixin, viewsets.ViewSet):
         obj = get_object_or_404(queryset, pk=pk)
         obj.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=False, methods=['post'], url_path='from')
+    def from_template(self, request, semester_pk=None):
+        template_id = request.data['templateId']
+        template = get_object_or_404(Template, pk=template_id)
+        parent_semester = get_object_or_404(Semester, pk=semester_pk)
+        for template_class in template.classes.all():
+            class_object = Class.objects.create(name=template_class.name, parent_semester=parent_semester)
+            for template_req in template_class.requirements.all():
+                Requirement.objects.create(text=template_req.text, parent_class=class_object)
+        return Response(status=status.HTTP_201_CREATED)
 
 
 class RequirementViewSet(viewsets.ViewSet):
