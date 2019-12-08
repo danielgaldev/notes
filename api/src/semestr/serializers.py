@@ -9,11 +9,15 @@ class RequirementSerializer(serializers.ModelSerializer):
 
 
 class ClassSerializer(serializers.ModelSerializer):
-    requirements = RequirementSerializer(many=True)
+    requirements = serializers.SerializerMethodField()
 
     class Meta:
         model = Class
         fields = ('id', 'name', 'requirements')
+
+    def get_requirements(self, instance):
+        reqs = instance.requirements.all().order_by('-id')
+        return RequirementSerializer(reqs, many=True).data
 
 
 class SemesterSerializer(serializers.ModelSerializer):
