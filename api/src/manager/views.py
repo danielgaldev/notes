@@ -17,12 +17,12 @@ class TemplateViewSet(
     queryset = models.Template.objects.all()
 
     def get_serializer_class(self):
-        if self.action == 'retrieve':
+        if self.action == 'list':
             return serializers.TemplateDetailSerializer
         return serializers.TemplateSerializer
 
     def get_permissions(self):
-        if self.action == 'list' or self.action == 'retrieve':
+        if self.action == 'list':
             permission_classes = [IsAuthenticated]
         else:
             permission_classes = [IsAdminUser]
