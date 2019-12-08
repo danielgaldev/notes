@@ -12,6 +12,7 @@ import Admin from './pages/Admin';
 import Home from './pages/Home';
 import SemesterDetailPage from './pages/SemesterDetailPage';
 import withLayout from './hoc/withLayout';
+import Templates from './pages/Templates';
 
 
 export const history = createBrowserHistory();
@@ -25,6 +26,7 @@ function App({ user, getUser }) {
       <Switch>
         <LoggedInRoute exact path='/' user={user}>{withLayout(Home)}</LoggedInRoute>
         <LoggedInRoute exact path='/semesters/:id' user={user}>{withLayout(SemesterDetailPage)}</LoggedInRoute>
+        <LoggedInRoute exact path='/semesters/:id/templates' user={user}>{withLayout(Templates)}</LoggedInRoute>
         <AdminRoute exact path='/admin' user={user}><Admin /></AdminRoute>
         <Route exact path='/login' component={Login} />
         <Route exact path='/forbidden' component={Forbidden} />

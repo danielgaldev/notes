@@ -12,6 +12,9 @@ import NotFound from './NotFound';
 export default function SemesterDetailPage() {
   const { id } = useParams();
   const [{ data, error }, update] = useAxios(`/api/v1/semesters/${id}/`);
+  React.useEffect(() => {
+    update();
+  }, [update]);
 
   if (error && error.response.status === 404) {
     return <NotFound />;
@@ -19,11 +22,16 @@ export default function SemesterDetailPage() {
 
   return (
     <main>
-      <div className='w-32 p-4'>
+      <div className='w-full p-4 flex justify-between'>
         <Link to='/'>
           <span className='flex items-center'>
             <FaChevronLeft />
-            <span className='ml-2 hover:underline'>Go back</span>
+            <span className='ml-2 underline hover:no-underline'>Back to semesters</span>
+          </span>
+        </Link>
+        <Link to={`/semesters/${id}/templates`}>
+          <span className='flex items-center'>
+            <span className='ml-2 underline hover:no-underline'>Import classes from template</span>
           </span>
         </Link>
       </div>
