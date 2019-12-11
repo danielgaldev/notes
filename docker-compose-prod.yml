@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  api_prod:
+    build: api
+    ports:
+      - 8000:8000
+    depends_on: 
+      - db_prod
+    environment: 
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - DJANGO_DATABASE_NAME=${DJANGO_DATABASE_NAME}
+      - DJANGO_DATABASE_USER=${DJANGO_DATABASE_USER}
+      - DJANGO_DATABASE_HOST=db_prod
+      - DJANGO_DATABASE_PORT=${DJANGO_DATABASE_PORT}
+
+  client_prod:
+    build: client
+    ports:
+      - 5000:80
+
+  db_prod:
+    image: postgres:12.0-alpine
+    volumes:
+      - starter_data:/var/lib/postgresql/data/
+
+volumes:
+  starter_data:
+    external: true

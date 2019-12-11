@@ -1,0 +1,11 @@
+FROM python:3.7-alpine
+ENV PYTHONUNBUFFERED 1
+WORKDIR /code
+
+RUN apk add gcc python3-dev musl-dev postgresql-dev libpq
+
+COPY requirements.txt /code/
+RUN pip install -r requirements.txt && pip install gunicorn
+
+COPY . /code/
+ENTRYPOINT ["./production-entrypoint.sh"]
