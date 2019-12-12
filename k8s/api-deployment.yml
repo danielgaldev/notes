@@ -23,7 +23,7 @@ spec:
           - name: DJANGO_ALLOWED_HOSTS
             value: "['*']"
           - name: DJANGO_DEBUG
-            value: "true"
+            value: "false"
           - name: DJANGO_DATABASE_NAME
             value: postgres
           - name: DJANGO_DATABASE_USER
@@ -37,4 +37,3 @@ spec:
               secretKeyRef:
                 name: django-secret-key
                 key: DJANGO_SECRET_KEY
-                
