@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client-simple
+  labels:
+    component: client
+spec:
+  containers:
+    - name: client
+      image: danielgaldev/semestr-client
+      ports:
+        - containerPort: 80
