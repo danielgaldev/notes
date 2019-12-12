@@ -18,5 +18,23 @@ spec:
       - name: semestr-api
         image: danielgaldev/semestr-api
         ports:
-        - containerPort: 8000
-        
+          - containerPort: 8000
+        env:
+          - name: DJANGO_ALLOWED_HOSTS
+            value: "['*']"
+          - name: DJANGO_DEBUG
+            value: "true"
+          - name: DJANGO_DATABASE_NAME
+            value: postgres
+          - name: DJANGO_DATABASE_USER
+            value: postgres
+          - name: DJANGO_DATABASE_HOST
+            value: db-cluster-ip
+          - name: DJANGO_DATABASE_PORT
+            value: "5432"
+          - name: DJANGO_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: django-secret-key
+                key: DJANGO_SECRET_KEY
+                
