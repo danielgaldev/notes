@@ -1,9 +1,0 @@
-secret: secret
-debug: true
-allowed_hosts: []
-database:
-  name: name
-  user: user
-  host: db
-  port: 5432
-  
