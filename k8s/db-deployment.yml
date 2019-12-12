@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  labels:
+    component: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: db
+  template:
+    metadata:
+      labels:
+        component: db
+    spec:
+      containers:
+      - name: semestr-db
+        image: postgres:12.0-alpine
+        ports:
+          - containerPort: 5432
+        volumeMounts:
+          - name: semestr-storage
+            mountPath: /var/lib/postgresql/data
+            subPath: postgres
+      volumes:
+        - name: semestr-storage
+          persistentVolumeClaim:
+            claimName: db-pvc
