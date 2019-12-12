@@ -18,6 +18,7 @@
     "start": "react-scripts start",
     "test": "jest --config ./src/jest.config.js",
     "test:watch": "jest --watchAll --config ./src/jest.config.js",
+    "build": "react-scripts build",
     "build:styles": "postcss src/tailwind.css -o src/styles.css",
     "prebuild": "yarn build:styles",
     "prestart": "yarn build:styles"
