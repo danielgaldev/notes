@@ -17,6 +17,7 @@ spec:
       containers:
       - name: semestr-client
         image: danielgaldev/semestr-client
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         

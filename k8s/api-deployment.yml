@@ -19,6 +19,7 @@ spec:
         image: danielgaldev/semestr-api
         ports:
           - containerPort: 8000
+        imagePullPolicy: Always
         env:
           - name: DJANGO_ALLOWED_HOSTS
             value: "['*']"
